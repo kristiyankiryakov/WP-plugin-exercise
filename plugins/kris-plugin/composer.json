@@ -1,0 +1,19 @@
+{
+    "name": "kris/kris-plugin",
+    "description": "Starter plugin",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Kristiyan",
+            "email": "emineo@abv.bg"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "Inc\\":"./inc"
+        }
+    }
+}
