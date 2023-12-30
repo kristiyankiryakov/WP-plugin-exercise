@@ -33,6 +33,7 @@ class KrisPlugin
     }
     function register()
     {
+        // admin_enqueue_scripts for backend and wp_enqueue_scripts for frontend
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
     }
     function deactivate()
@@ -51,6 +52,7 @@ class KrisPlugin
     function enqueue()
     {
         wp_enqueue_style('mypluginstyle', plugins_url('/assets/mystyle.css', __FILE__));
+        wp_enqueue_script('myscript', plugins_url('/assets/myscript.js', __FILE__));
     }
 }
 
