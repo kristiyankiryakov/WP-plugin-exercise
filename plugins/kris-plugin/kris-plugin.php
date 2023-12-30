@@ -18,6 +18,13 @@ if (!defined('ABSPATH')) {
     die;
 }
 
+if (file_exists(dirname(__FILE__) . '/vendor/autoload.php')) {
+    require_once dirname(__FILE__) . '/vendor/autoload.php';
+}
+
+use Inc\Activate;
+use Inc\Deactivate;
+
 class KrisPlugin
 {
     public $plugin;
@@ -65,6 +72,13 @@ class KrisPlugin
         // syntax to enqueue async script
         // wp_enqueue_script('myscript', plugins_url('/assets/myscript.js', __FILE__), null, null, ['strategy' => 'async']);
     }
+    function activate()
+    {
+        Activate::activate();
+    }
+    function deactivate(){
+        Deactivate::deactivate();
+    }
 }
 
 if (class_exists('KrisPlugin')) {
@@ -74,9 +88,9 @@ if (class_exists('KrisPlugin')) {
 
 
 // activation
-// register_activation_hook(__FILE__, array($krisPlugin, 'activate'));
+register_activation_hook(__FILE__, array($krisPlugin, 'activate'));
 
 // deactivate
-// register_deactivation_hook(__FILE__, array($krisPlugin, 'deactivate'));
+register_deactivation_hook(__FILE__, array($krisPlugin, 'deactivate'));
 
 // uninstall
