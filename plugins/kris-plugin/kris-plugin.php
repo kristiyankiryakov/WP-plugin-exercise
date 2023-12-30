@@ -31,6 +31,10 @@ class KrisPlugin
         $this->custom_post_type();
         flush_rewrite_rules();
     }
+    function register()
+    {
+        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+    }
     function deactivate()
     {
         flush_rewrite_rules();
@@ -44,10 +48,15 @@ class KrisPlugin
     {
         register_post_type('book', ['public' => true, 'label' => 'Books']);
     }
+    function enqueue()
+    {
+        wp_enqueue_style('mypluginstyle', plugins_url('/assets/mystyle.css', __FILE__));
+    }
 }
 
 if (class_exists('KrisPlugin')) {
     $krisPlugin = new KrisPlugin();
+    $krisPlugin->register();
 }
 
 
