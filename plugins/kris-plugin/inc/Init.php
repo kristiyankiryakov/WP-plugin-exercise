@@ -12,6 +12,7 @@ final class Init
     {
         return [
             Pages\Admin::class,
+            Base\Enqueue::class,
         ];
     }
     public static function register_services()
@@ -37,8 +38,7 @@ final class Init
 //     public function register()
 //     {
 //         // admin_enqueue_scripts for backend and wp_enqueue_scripts for frontend
-//         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
-
+//       
 //         add_filter("plugin_action_links_$this->plugin", array($this, 'settings_link'));
 //     }
 //     public function settings_link($links)
@@ -57,14 +57,7 @@ final class Init
 //     {
 //         register_post_type('book', ['public' => true, 'label' => 'Books']);
 //     }
-//     function enqueue()
-//     {
-//         // enqueue all our scripts
-//         wp_enqueue_style('mypluginstyle', plugins_url('/assets/mystyle.css', __FILE__));
-//         wp_enqueue_script('myscript', plugins_url('/assets/myscript.js', __FILE__));
-//         // syntax to enqueue async script
-//         // wp_enqueue_script('myscript', plugins_url('/assets/myscript.js', __FILE__), null, null, ['strategy' => 'async']);
-//     }
+//    
 //     function activate()
 //     {
 //         Activate::activate();
