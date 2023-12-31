@@ -5,8 +5,9 @@
 
 namespace Inc\Base;
 
+use Inc\Base\BaseController;
 
-class Enqueue
+class Enqueue extends BaseController
 {
     public function register()
     {
@@ -16,8 +17,8 @@ class Enqueue
     public function enqueue()
     {
         // enqueue all our scripts
-        wp_enqueue_style('mypluginstyle', PLUGIN_URL . '/assets/mystyle.css');
-        wp_enqueue_script('myscript', PLUGIN_URL . '/assets/myscript.js');
+        wp_enqueue_style('mypluginstyle', $this->plugin_url . '/assets/mystyle.css');
+        wp_enqueue_script('myscript', $this->plugin_url . '/assets/myscript.js');
         // syntax to enqueue async script
         // wp_enqueue_script('myscript', plugins_url('/assets/myscript.js', __FILE__), null, null, ['strategy' => 'async']);
     }
