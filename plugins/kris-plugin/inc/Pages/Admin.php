@@ -4,23 +4,34 @@
  */
 
 namespace Inc\Pages;
+
 use Inc\Base\BaseController;
+use Inc\Api\Settings;
 
 class Admin extends BaseController
 {
+    public $settings;
+
+    public function __construct()
+    {
+        $this->settings = new Settings();
+    }
     public function register()
     {
-        add_action('admin_menu', array($this, 'add_admin_pages'));
+        $pages = [
+            [
+                'page_title' => 'Kris Plugin',
+                'menu_title' => 'Kris',
+                'capability' => 'manage_options',
+                'menu_slug' => 'kris_plugin',
+                'callback' => function () {
+                    echo '<h1>Kris pluggiin</h1>';
+                },
+                'icon_url' => 'dashicons-store',
+                'position' => 110
+            ]
+        ];
+        $this->settings->addPages($pages)->register();
     }
-
-    public function add_admin_pages()
-    {
-        add_menu_page('Kris Plugin', 'Kris', 'manage_options', 'kris_plugin', array($this, 'admin_index'), 'dashicons-store', 110);
-    }
-
-    public function admin_index()
-    {
-        require_once $this->plugin_path . 'templates/admin.php';
-    }
-
+    
 }
