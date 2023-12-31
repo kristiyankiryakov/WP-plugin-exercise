@@ -3,7 +3,7 @@
 /**
  * Trigger this file on Plugin uninstall
  * 
- * package KrisPlugin
+ * @package KrisPlugin
  */
 
 if (!defined('WP_UNINSTALL_PLUGIN')) {
