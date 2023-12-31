@@ -5,6 +5,7 @@
 
 namespace Inc\Pages;
 
+use Inc\Api\Callbacks\AdminCallbacks;
 use Inc\Base\BaseController;
 use Inc\Api\Settings;
 
@@ -12,26 +13,38 @@ class Admin extends BaseController
 {
     public $pages = array();
     public $sub_pages = array();
-
+    public $callbacks;
     public $settings;
 
-    public function __construct()
+    public function register()
     {
         $this->settings = new Settings();
-        array_push($this->pages, [
-            'page_title' => 'Kris Plugin',
-            'menu_title' => 'Kris',
-            'capability' => 'manage_options',
-            'menu_slug' => 'kris_plugin',
-            'callback' => function () {
-                echo '<h1>Kris pluggiin</h1>';
-            },
-            'icon_url' => 'dashicons-store',
-            'position' => 110
-        ]);
 
-        array_push(
-            $this->sub_pages,
+        $this->callbacks = new AdminCallbacks();
+        $this->setPages();
+        $this->setSubPages();
+
+        $this->settings->addPages($this->pages)->addSubPages($this->sub_pages)->register();
+    }
+    public function setPages()
+    {
+        $this->pages =
+            [
+                [
+                    'page_title' => 'Kris Plugin',
+                    'menu_title' => 'Kris',
+                    'capability' => 'manage_options',
+                    'menu_slug' => 'kris_plugin',
+                    'callback' => array($this->callbacks, 'adminDashboard'),
+                    'icon_url' => 'dashicons-store',
+                    'position' => 110
+                ]
+            ];
+    }
+
+    public function setSubPages()
+    {
+        $this->sub_pages = [
             [
                 'parent_slug' => 'kris_plugin',
                 'page_title' => 'Custom Post Types',
@@ -62,11 +75,7 @@ class Admin extends BaseController
                     echo '<h1>Widgets Manager</h1>';
                 },
             ]
-        );
-    }
-    public function register()
-    {
-        $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->sub_pages)->register();
+        ];
     }
 
 }

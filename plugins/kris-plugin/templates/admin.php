@@ -1,3 +1,3 @@
 <h1>
-    Kris Plugin
+    Kris Plugin template    
 </h1>
