@@ -22,6 +22,12 @@ class Settings
         $this->admin_pages = $pages;
         return $this;
     }
+
+    public function addSubPages(array $sub_pages)
+    {
+        $this->admin_sub_pages = array_merge($this->admin_sub_pages, $sub_pages);
+        return $this;
+    }
     public function withSubPage(string $title = null)
     {
         if (empty($this->admin_pages)) {  // so we don't break the chaining
@@ -33,7 +39,7 @@ class Settings
             [
                 'parent_slug' => $admin_page['menu_slug'],
                 'page_title' => $admin_page['page_title'],
-                'menu_title' => $admin_page['menu_title'],
+                'menu_title' => ($title) ? $title : $admin_page['menu_title'],
                 'capability' => $admin_page['capability'],
                 'menu_slug' => $admin_page['menu_slug'],
                 'callback' => function () {
