@@ -51,9 +51,7 @@ class Admin extends BaseController
                 'menu_title' => 'CPT',
                 'capability' => 'manage_options',
                 'menu_slug' => 'kris_cpt',
-                'callback' => function () {
-                    echo '<h1>CPT Manager</h1>';
-                },
+                'callback' => array($this->callbacks, 'cpt'),
             ],
             [
                 'parent_slug' => 'kris_plugin',
@@ -61,9 +59,7 @@ class Admin extends BaseController
                 'menu_title' => 'Taxonomies',
                 'capability' => 'manage_options',
                 'menu_slug' => 'kris_taxonomies',
-                'callback' => function () {
-                    echo '<h1>Taxonomies Manager</h1>';
-                },
+                'callback' => array($this->callbacks, 'taxonomies'),
             ],
             [
                 'parent_slug' => 'kris_plugin',
@@ -71,9 +67,7 @@ class Admin extends BaseController
                 'menu_title' => 'Widgets',
                 'capability' => 'manage_options',
                 'menu_slug' => 'kris_widgets',
-                'callback' => function () {
-                    echo '<h1>Widgets Manager</h1>';
-                },
+                'callback' => array($this->callbacks, 'widgets'),
             ]
         ];
     }
