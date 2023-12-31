@@ -8,6 +8,7 @@ namespace Inc\Api;
 class Settings
 {
     public $admin_pages = array();
+    public $admin_sub_pages = array();
 
     public function register()
     {
@@ -19,6 +20,28 @@ class Settings
     public function addPages(array $pages)
     {
         $this->admin_pages = $pages;
+        return $this;
+    }
+    public function withSubPage(string $title = null)
+    {
+        if (empty($this->admin_pages)) {  // so we don't break the chaining
+            return $this;
+        }
+
+        $admin_page = $this->admin_pages[0];
+        $sub_page =
+            [
+                'parent_slug' => $admin_page['menu_slug'],
+                'page_title' => $admin_page['page_title'],
+                'menu_title' => $admin_page['menu_title'],
+                'capability' => $admin_page['capability'],
+                'menu_slug' => $admin_page['menu_slug'],
+                'callback' => function () {
+                    echo '<h1>Kris pluggiin subpage</h1>';
+                },
+            ];
+
+        array_push($this->admin_sub_pages, $sub_page);
         return $this;
     }
     public function addAdminMenu()
@@ -34,5 +57,16 @@ class Settings
                 $page['position']
             );
         }
+        foreach ($this->admin_sub_pages as $page) {
+            add_submenu_page(
+                $page['parent_slug'],
+                $page['page_title'],
+                $page['menu_title'],
+                $page['capability'],
+                $page['menu_slug'],
+                $page['callback']
+            );
+        }
     }
+
 }
