@@ -24,6 +24,10 @@ class Admin extends BaseController
         $this->setPages();
         $this->setSubPages();
 
+        $this->setSettings();
+        $this->setSections();
+        $this->setFields();
+
         $this->settings->addPages($this->pages)->addSubPages($this->sub_pages)->register();
     }
     public function setPages()
@@ -70,6 +74,49 @@ class Admin extends BaseController
                 'callback' => array($this->callbacks, 'widgets'),
             ]
         ];
+    }
+
+    public function setSettings()
+    {
+        $args = [
+            [
+                'option_group' => 'kris_options_group',
+                'option_name' => 'text_example',
+                'callback' => array($this->callbacks, 'krisOptionsGroup')
+            ]
+        ];
+        $this->settings->setSettings($args);
+    }
+
+    public function setSections()
+    {
+        $args = [
+            [
+                'id' => 'kris_admin_index',
+                'title' => 'Settings',
+                'callback' => array($this->callbacks, 'krisAdminSection'),
+                'page' => 'kris_plugin'
+            ]
+        ];
+        $this->settings->setSections($args);
+    }
+
+    public function setFields()
+    {
+        $args = [
+            [
+                'id' => 'text_example',
+                'title' => 'Text Example',
+                'callback' => array($this->callbacks, 'krisTextExample'),
+                'page' => 'kris_plugin',
+                'section' => 'kris_admin_index',
+                'args' => array(
+                    'label_for' => 'text_example',
+                    'class' => 'example_class'
+                )
+            ]
+        ];
+        $this->settings->setFields($args);
     }
 
 }
