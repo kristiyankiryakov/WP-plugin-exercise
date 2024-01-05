@@ -9,19 +9,12 @@
         <label for="message">Your Message</label>
         <textarea name="message"></textarea></br>
         <button type="submit">Submit form</button>
-
     </form>
 </div>
 
 <script>
-
-    jQuery(document).ready(($) => {
-        $('#enquiry_form').submit((e) => {
-            e.preventDefault(); // prevent default form submission
-            console.log("Form submitted!");
-            // Add your form submission logic here
-        });
+    $(document).ready(function () {
+        console.log("ready!");
     });
-
 
 </script>

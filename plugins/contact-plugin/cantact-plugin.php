@@ -39,4 +39,4 @@ $contact_plugin = new ContactPlugin();
 
 $contact_plugin->initialize();
 
-add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');
+add_action('wp_enqueue_scripts', array($contact_plugin, 'add_my_script'));
