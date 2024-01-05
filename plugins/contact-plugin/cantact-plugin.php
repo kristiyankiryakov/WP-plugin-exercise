@@ -24,7 +24,13 @@ class ContactPlugin
     {
         include_once(MY_PLUGIN_PATH . 'includes/utilities.php');
         include_once(MY_PLUGIN_PATH . 'includes/options-page.php');
+        include_once(MY_PLUGIN_PATH . 'includes/contact-form.php');
 
+    }
+
+    function add_my_script()
+    {
+        wp_enqueue_script('jquery');
     }
 
 }
@@ -32,3 +38,5 @@ class ContactPlugin
 $contact_plugin = new ContactPlugin();
 
 $contact_plugin->initialize();
+
+add_action('wp_enqueue_scripts', 'enqueue_custom_scripts');

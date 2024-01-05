@@ -9,6 +9,7 @@ add_action('carbon_fields_register_fields', 'create_options_page');
 function load_carbon_fields()
 {
     \Carbon_Fields\Carbon_Fields::boot();
+    
 }
 
 function create_options_page()
@@ -27,5 +28,7 @@ function create_options_page()
                     ->set_rows(4)
                     ->set_help_text('Type the message you want the submitter to receive')
             )
-        );
+        )
+        ->set_icon('dashicons-media-text');
+        
 }
