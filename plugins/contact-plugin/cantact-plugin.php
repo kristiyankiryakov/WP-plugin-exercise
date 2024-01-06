@@ -19,6 +19,7 @@ if (!class_exists('ContactPlugin')) {
 
         public function __construct()
         {
+            add_action('admin_menu', array($this, 'include_script'));
 
             define('MY_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
@@ -26,6 +27,11 @@ if (!class_exists('ContactPlugin')) {
 
             require_once(MY_PLUGIN_PATH . '/vendor/autoload.php');
 
+        }
+
+        function include_script()
+        {
+            wp_enqueue_script('jquery');
         }
 
         public function initialize()
