@@ -19,9 +19,3 @@ function create_rest_endpoint()
         )
     );
 }
-
-function handle_enquiry()
-{
-    
-    echo 'Hello';
-}

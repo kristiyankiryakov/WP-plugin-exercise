@@ -1,42 +1,46 @@
 <?php
 /**
- *  
- * Plugin Name: Contact Plugin
- * Description" Test plugin
- * Version : 1.0.0
- * Text Domain: options-plugin
+ * 
+ * Plugin name: Contact Plugin
+ * Description: Plugin for my custom contact form
+ * Version: 1.0.0
+ * Text Domain: contact-plugin
+ * 
  */
 
 if (!defined('ABSPATH')) {
-    die('');
+    die('You cannot be here');
 }
 
+if (!class_exists('ContactPlugin')) {
 
-class ContactPlugin
-{
-    public function __construct()
+    class ContactPlugin
     {
-        define('MY_PLUGIN_PATH', plugin_dir_path(__FILE__));
-        require_once(MY_PLUGIN_PATH . '/vendor/autoload.php');
+
+        public function __construct()
+        {
+
+            define('MY_PLUGIN_PATH', plugin_dir_path(__FILE__));
+
+            define('MY_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+            require_once(MY_PLUGIN_PATH . '/vendor/autoload.php');
+
+        }
+
+        public function initialize()
+        {
+            include_once MY_PLUGIN_PATH . 'includes/utilities.php';
+
+            include_once MY_PLUGIN_PATH . 'includes/options-page.php';
+
+            include_once MY_PLUGIN_PATH . 'includes/contact-form.php';
+        }
+
+
     }
 
-    public function initialize()
-    {
-        include_once(MY_PLUGIN_PATH . 'includes/utilities.php');
-        include_once(MY_PLUGIN_PATH . 'includes/options-page.php');
-        include_once(MY_PLUGIN_PATH . 'includes/contact-form.php');
-
-    }
-
-    function add_my_script()
-    {
-        wp_enqueue_script('jquery');
-    }
+    $contactPlugin = new ContactPlugin;
+    $contactPlugin->initialize();
 
 }
-
-$contact_plugin = new ContactPlugin();
-
-$contact_plugin->initialize();
-
-add_action('wp_enqueue_scripts', array($contact_plugin, 'add_my_script'));
