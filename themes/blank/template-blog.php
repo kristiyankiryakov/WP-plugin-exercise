@@ -39,7 +39,9 @@ get_header(); ?>
                                     <?php the_title(); ?>
                                 </a>
                             </h2>
-                            <?php the_excerpt(); ?>
+                            <?php
+                            the_excerpt();
+                            ?>
                         </div>
                     </article>
                     <?php
@@ -50,6 +52,7 @@ get_header(); ?>
             wp_reset_postdata();
             ?>
         </div>
+
     </main>
 </div>
 

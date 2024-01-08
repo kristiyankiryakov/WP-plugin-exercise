@@ -19,6 +19,10 @@ body {
     padding: 0;
 }
 
+.site-main {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
 
 /* Blog Page Styles */
 .posts-list {
@@ -43,6 +47,17 @@ body {
     max-width: 100%;
     height: auto;
     border-bottom: 1px solid #ddd;
+}
+
+.post-thumbnail img {
+    max-width: 100%;
+    height: auto;
+    width: 500px;
+    /* Set the width to 500 pixels */
+    height: 500px;
+    /* Set the height to 500 pixels */
+    object-fit: cover;
+    /* Maintain aspect ratio and cover the container */
 }
 
 .entry-content {
@@ -127,4 +142,10 @@ a {
 .nav-menu a:hover {
     text-decoration: underline;
     /* Add underline on hover if you like */
+}
+
+/* Search Form */
+
+.search-form-container {
+    padding-left: 0.5rem;
 }

@@ -13,7 +13,10 @@
 <body <?php body_class(); ?>>
     <header id="header" class="site-header">
         <div class="site-branding">
-            <!-- Add your logo or site title here -->
+
+
+
+
             <h1 class="site-title">
                 <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
                     <?php bloginfo('name'); ?>
@@ -26,5 +29,21 @@
         $menu_location = is_home() || is_front_page() ? 'header-menu' : 'home-menu';
         wp_nav_menu(array('theme_location' => $menu_location));
         ?>
+
+        <div class="search-form-container">
+            <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+                <label>
+                    <span class="screen-reader-text">
+                        <?php echo _x('Search for:', 'label', 'blank'); ?>
+                    </span>
+                    <input type="search" class="search-field"
+                        placeholder="<?php echo esc_attr_x('Search...', 'placeholder', 'blank'); ?>"
+                        value="<?php echo get_search_query(); ?>" name="s" />
+                </label>
+                <button type="submit" class="search-submit">
+                    <?php echo _x('Search', 'submit button', 'blank'); ?>
+                </button>
+            </form>
+        </div>
 
     </header>
