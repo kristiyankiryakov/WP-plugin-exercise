@@ -26,24 +26,30 @@
 
         <!-- Navigation menu -->
         <?php
-        $menu_location = is_home() || is_front_page() ? 'header-menu' : 'home-menu';
-        wp_nav_menu(array('theme_location' => $menu_location));
+        // $menu_location = is_home() || is_front_page() ? 'header-menu' : 'home-menu';
+        wp_nav_menu(array('theme_location' => 'home-menu'));
         ?>
 
-        <div class="search-form-container">
-            <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
-                <label>
-                    <span class="screen-reader-text">
-                        <?php echo _x('Search for:', 'label', 'blank'); ?>
-                    </span>
-                    <input type="search" class="search-field"
-                        placeholder="<?php echo esc_attr_x('Search...', 'placeholder', 'blank'); ?>"
-                        value="<?php echo get_search_query(); ?>" name="s" />
-                </label>
-                <button type="submit" class="search-submit">
-                    <?php echo _x('Search', 'submit button', 'blank'); ?>
-                </button>
-            </form>
-        </div>
+        <?php
+        // Check if not on the root or "/contact" page
+        if (!is_front_page() && !is_page('contact')) {
+            ?>
+            <div class="search-form-container">
+                <form role="search" method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+                    <label>
+                        <span class="screen-reader-text">
+                            <?php echo _x('Search for:', 'label', 'blank'); ?>
+                        </span>
+                        <input type="search" class="search-field"
+                            placeholder="<?php echo esc_attr_x('Search...', 'placeholder', 'blank'); ?>"
+                            value="<?php echo get_search_query(); ?>" name="s" />
+                    </label>
+                    <button type="submit" class="search-submit">&#128269;</button>
+                </form>
+            </div>
+            <?php
+        }
+        ?>
+
 
     </header>

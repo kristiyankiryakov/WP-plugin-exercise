@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="primary" class="content-area">
+<!-- <div id="primary" class="content-area">
     <main id="main" class="site-main">
         <?php
         if (have_posts()) :
@@ -13,6 +13,6 @@
         endif;
         ?>
     </main>
-</div>
+</div> -->
 
 <?php get_footer(); ?>

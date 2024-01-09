@@ -33,7 +33,7 @@ get_header(); ?>
                                 </a>
                             </div>
                         <?php endif; ?>
-                        <div class="entry-content">
+                        <div class="entry-content-blog-post">
                             <h2 class="entry-title">
                                 <a href="<?php the_permalink(); ?>" rel="bookmark">
                                     <?php the_title(); ?>

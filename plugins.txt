@@ -1,0 +1,4 @@
+# Essential Plugins
+Contact Form 7
+Flamingo
+
